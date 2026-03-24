@@ -137,6 +137,7 @@ export class CredentialConfigCreateComponent implements OnInit {
       keyBinding: new FormControl(true, [Validators.required]),
       statusManagement: new FormControl(true, [Validators.required]),
       claims: new FormControl(''),
+      custom_metadata: new FormControl(''),
       // SD-JWT specific fields
       disclosureFrame: new FormControl(''),
       vct: new FormControl(''),
@@ -344,6 +345,7 @@ export class CredentialConfigCreateComponent implements OnInit {
       keyBinding: config.keyBinding ?? true,
       statusManagement: config.statusManagement ?? true,
       claims: this.stringifyField(config.claims),
+      custom_metadata: this.stringifyField((config as any).custom_metadata),
       attributeProviderId: config.attributeProviderId || '',
       webhookEndpointId: config.webhookEndpointId || '',
       // SD-JWT specific
@@ -648,6 +650,8 @@ export class CredentialConfigCreateComponent implements OnInit {
 
     // Parse JSON fields using helper - use null to clear, undefined is not sent
     formValue.claims = this.parseJsonField(formValue.claims, 'parse', true);
+
+    formValue.custom_metadata = this.parseJsonField(formValue.custom_metadata, 'parse', true);
 
     // SD-JWT specific fields (only include if SD-JWT format)
     if (isMdoc) {

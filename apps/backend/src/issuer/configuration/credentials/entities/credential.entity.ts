@@ -205,6 +205,11 @@ export class CredentialConfig {
     @Column("json", { nullable: true })
     vct?: string | VCT | null;
 
+    @Column("json", { nullable: true })
+    @IsOptional()
+    @IsObject()
+    custom_metadata?: Record<string, any> | null;
+
     @IsOptional()
     @Column("boolean", { default: false })
     @IsBoolean()

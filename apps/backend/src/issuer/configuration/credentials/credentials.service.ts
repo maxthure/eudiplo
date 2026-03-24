@@ -90,10 +90,19 @@ export class CredentialsService {
                 entity,
                 tenantId,
             );
-            credentialConfigurationsSupported[entity.id] =
-                toCredentialConfigurationSupported(
-                    builtConfig,
-                ) as CredentialConfigurationSupported;
+            
+            // 1. Hole die Standard-OID4VCI-Konfiguration (ohne TS12 Felder)
+            const standardConfig = toCredentialConfigurationSupported(
+                builtConfig,
+            ) as CredentialConfigurationSupported;
+
+            // 2. Mische TS12 Custom Metadata direkt in das Root-Objekt!
+            // Hinweis: (entity as any) verhindert TypeScript-Compiler-Fehler, 
+            // falls das Feld noch nicht im TypeORM Entity-Interface definiert wurde.
+            credentialConfigurationsSupported[entity.id] = {
+                ...standardConfig,
+                ...((entity as any).custom_metadata || {})
+            } as CredentialConfigurationSupported;
         }
         return credentialConfigurationsSupported;
     }
