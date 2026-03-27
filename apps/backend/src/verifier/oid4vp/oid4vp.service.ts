@@ -417,7 +417,7 @@ export class Oid4vpService {
             await this.sessionService.add(effectiveSessionId, {
                 //TODO: not clear why it has to be any
                 credentials: credentials as any,
-                credentialPayload: decrypted as any,
+                rawPresentationPayload: decrypted as any,
                 status: SessionStatus.Completed,
             });
             // if there a a webhook passed in the session, use it

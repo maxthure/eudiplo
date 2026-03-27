@@ -22,7 +22,7 @@ export interface VctFormValue {
   description?: string;
   extends?: string;
   schema_uri?: string;
-  category?: string;              // <-- NEU: TS12 SCA Indicator
+  category?: string; // <-- NEU: TS12 SCA Indicator
   transaction_data_types?: any[]; // <-- NEU: TS12 SCA Transaktionsdaten
 }
 

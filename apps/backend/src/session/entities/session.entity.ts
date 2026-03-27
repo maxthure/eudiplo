@@ -233,4 +233,7 @@ export class Session {
      */
     @Column("varchar", { nullable: true })
     externalSubject?: string;
+
+    @Column("text", { nullable: true, transformer: EncryptedJsonTransformer })
+    rawPresentationPayload?: any;
 }
