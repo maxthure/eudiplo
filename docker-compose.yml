@@ -1,8 +1,9 @@
 services:
   eudiplo:
-    image: ghcr.io/openwallet-foundation-labs/eudiplo:latest
+    image: eudiplo-backend:custom-ts12 # ghcr.io/openwallet-foundation-labs/eudiplo:latest
     restart: always
     build:
+      context: .
       target: eudiplo
     env_file:
       - .env
@@ -18,9 +19,10 @@ services:
       start_period: 40s
 
   eudiplo-client:
-    image: ghcr.io/openwallet-foundation-labs/eudiplo-client:latest
+    image: eudiplo-frontend:custom-ts12 # ghcr.io/openwallet-foundation-labs/eudiplo-client:latest
     restart: always
     build:
+      context: .
       target: client
     ports:
       - '4200:8080'
@@ -28,7 +30,7 @@ services:
       eudiplo:
         condition: service_healthy
     environment:
-      - API_BASE_URL=http://eudiplo:3000
+      - API_BASE_URL=http://localhost:3000
       # Uncomment to serve the client from a subpath behind a reverse proxy:
       # - CLIENT_BASE_HREF=/eudiplo-client/
     healthcheck:

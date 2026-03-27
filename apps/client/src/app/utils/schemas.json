@@ -1990,6 +1990,15 @@
         },
         "schema_uri#integrity": {
           "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "transaction_data_types": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
         }
       },
       "additionalProperties": false

@@ -22,6 +22,8 @@ export interface VctFormValue {
   description?: string;
   extends?: string;
   schema_uri?: string;
+  category?: string;              // <-- NEU: TS12 SCA Indicator
+  transaction_data_types?: any[]; // <-- NEU: TS12 SCA Transaktionsdaten
 }
 
 export interface CredentialConfigFormValue {
@@ -37,6 +39,7 @@ export interface CredentialConfigFormValue {
   keyId?: string;
   claims?: string; // JSON string
   disclosureFrame?: string; // JSON string
+  custom_metadata?: string; // <-- NEU: JSON string
   vct?: VctFormValue;
 }
 

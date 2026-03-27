@@ -38,7 +38,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import {
   credentialConfigSchema,
   embeddedDisclosurePolicySchema,
-  vctSchema,
+  vctSchema as vctSchemaBase,
 } from '../../../utils/schemas';
 import { EditorComponent, extractSchema } from '../../../utils/editor/editor.component';
 import { ImageFieldComponent } from '../../../utils/image-field/image-field.component';
@@ -109,7 +109,7 @@ export class CredentialConfigCreateComponent implements OnInit {
   selectedLifetimePreset: number | null = 3600;
   customLifetime = false;
 
-  vctSchema = vctSchema;
+  vctSchema = vctSchemaBase;
   embeddedDisclosurePolicySchema = embeddedDisclosurePolicySchema;
 
   // VCT mode: 'string' for simple URI, 'object' for metadata object
