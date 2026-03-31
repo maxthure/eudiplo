@@ -95,20 +95,7 @@ export class MdocverifierService {
                     Object.assign(claims, nsClaims);
                 }
             }
-
-            // --- START BYPASS ---
-            this.logger.warn(`!!! BYPASS ENABLED für ${docType} !!!`);
-            this.logger.warn(`Claims extrahiert: ${JSON.stringify(claims)}`);
-
-            // Wir überspringen Schritt 3, 4, 5 und 6 komplett
-            return {
-                verified: true, // Wir sagen einfach, es ist alles okay
-                claims,         // Dein Rust-Gateway bekommt trotzdem die Daten (Name, Alter etc.)
-                payload: vp,
-                docType,
-            };
-            // --- ENDE BYPASS ---
-
+            
             // 3) Build the session transcript for verification
             const sessionTranscript = await SessionTranscript.forOid4Vp(
                 sessionData,
