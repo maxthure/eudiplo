@@ -33,6 +33,12 @@
       "items": {
         "type": "object"
       }
+    },
+    "display": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
     }
   },
   "additionalProperties": false
